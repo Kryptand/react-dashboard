@@ -17,3 +17,13 @@
   flex: 1;
 }
 
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  display: block;
+  width: 100;
+}
+body {
+  margin: 0px;
+}

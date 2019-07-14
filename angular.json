@@ -15,7 +15,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@nrwl/builders:web-build",
+          "builder": "@nrwl/web:build",
           "options": {
             "outputPath": "dist/apps/dashboard",
             "index": "apps/dashboard/src/index.html",
@@ -55,7 +55,7 @@
           }
         },
         "serve": {
-          "builder": "@nrwl/builders:web-dev-server",
+          "builder": "@nrwl/web:dev-server",
           "options": {
             "buildTarget": "dashboard:build"
           },
@@ -76,7 +76,7 @@
           }
         },
         "test": {
-          "builder": "@nrwl/builders:jest",
+          "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "apps/dashboard/jest.config.js",
             "tsConfig": "apps/dashboard/tsconfig.spec.json"
@@ -90,7 +90,7 @@
       "prefix": "",
       "architect": {
         "e2e": {
-          "builder": "@nrwl/builders:cypress",
+          "builder": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/dashboard-e2e/cypress.json",
             "tsConfig": "apps/dashboard-e2e/tsconfig.e2e.json",
@@ -110,6 +110,31 @@
           }
         }
       }
+    },
+    "side-menu": {
+      "root": "libs/side-menu",
+      "sourceRoot": "libs/side-menu/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/side-menu/tsconfig.lib.json",
+              "libs/side-menu/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/side-menu/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/side-menu/jest.config.js",
+            "tsConfig": "libs/side-menu/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
@@ -117,7 +142,7 @@
       "typescriptMismatch": false,
       "versionMismatch": false
     },
-    "defaultCollection": "@nrwl/schematics"
+    "defaultCollection": "@nrwl/react"
   },
   "schematics": {
     "@nrwl/schematics:application": {
